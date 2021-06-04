@@ -7,6 +7,6 @@ namespace AsyncPracticeThang.ViewModels.Home
 {
     public class IndexViewModel
     {
-        public string RandomNumber { get; set; }
+        public int RandomNumber { get; set; }
     }
 }

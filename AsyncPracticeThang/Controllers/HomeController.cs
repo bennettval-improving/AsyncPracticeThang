@@ -14,15 +14,17 @@ namespace AsyncPracticeThang.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HomeData _homeData;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, HomeData homeData)
         {
             _logger = logger;
+            _homeData = homeData;
         }
 
         public async Task<IActionResult> Index()
         {
-            var randomNumber = await GetRandomNumber();
+            var randomNumber = await _homeData.GetRandomNumber();
             var viewModel = new IndexViewModel { RandomNumber = randomNumber };
             return View(viewModel);
         }
@@ -38,13 +40,6 @@ namespace AsyncPracticeThang.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        private async Task<string> GetRandomNumber()
-        {
-            using (var client = new HttpClient())
-            {
-                var result = await client.GetAsync("https://seriouslyfundata.azurewebsites.net/api/generatearandomnumber");
-                return await result.Content.ReadAsStringAsync();
-            }
-        }
+        
     }
 }
