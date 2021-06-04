@@ -25,7 +25,12 @@ namespace AsyncPracticeThang.Controllers
         public async Task<IActionResult> Index()
         {
             var randomNumber = await _homeData.GetRandomNumber();
-            var viewModel = new IndexViewModel { RandomNumber = randomNumber };
+            var chuckNorrisFact = await _homeData.GetChuckNorrisFact();
+            var viewModel = new IndexViewModel 
+            { 
+                RandomNumber = randomNumber,
+                ChuckNorrisFact = chuckNorrisFact
+            };
             return View(viewModel);
         }
 
