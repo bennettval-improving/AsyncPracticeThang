@@ -26,10 +26,12 @@ namespace AsyncPracticeThang.Controllers
         {
             var randomNumber = await _homeData.GetRandomNumber();
             var chuckNorrisFact = await _homeData.GetChuckNorrisFact();
+            var seleucids = await _homeData.GetSeleucids();
             var viewModel = new IndexViewModel 
             { 
                 RandomNumber = randomNumber,
-                ChuckNorrisFact = chuckNorrisFact
+                ChuckNorrisFact = chuckNorrisFact,
+                Seleucids = seleucids
             };
             return View(viewModel);
         }

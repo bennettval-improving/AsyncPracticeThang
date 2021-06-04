@@ -29,5 +29,16 @@ namespace AsyncPracticeThang.Models
                 return fact.Joke;
             }
         }
+
+        public async Task<SeleucidsResult> GetSeleucids()
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync("https://seriouslyfundata.azurewebsites.net/api/seleucids");
+                var contentString = await result.Content.ReadAsStringAsync();
+                var seleucids = JsonSerializer.Deserialize<SeleucidsResult>(contentString);
+                return seleucids;
+            }
+        }
     }
 }

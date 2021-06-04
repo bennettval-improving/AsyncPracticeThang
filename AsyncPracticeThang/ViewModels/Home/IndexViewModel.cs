@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AsyncPracticeThang.Models;
 
 namespace AsyncPracticeThang.ViewModels.Home
 {
@@ -9,5 +10,6 @@ namespace AsyncPracticeThang.ViewModels.Home
     {
         public int RandomNumber { get; set; }
         public string ChuckNorrisFact { get; set; }
+        public SeleucidsResult Seleucids { get; set; }
     }
 }
