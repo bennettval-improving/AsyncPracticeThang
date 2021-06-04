@@ -30,14 +30,14 @@ namespace AsyncPracticeThang.Models
             }
         }
 
-        public async Task<SeleucidsResult> GetSeleucids()
+        public async Task<List<Seleucid>> GetSeleucids()
         {
             using (var client = new HttpClient())
             {
                 var result = await client.GetAsync("https://seriouslyfundata.azurewebsites.net/api/seleucids");
                 var contentString = await result.Content.ReadAsStringAsync();
-                var seleucids = JsonSerializer.Deserialize<SeleucidsResult>(contentString);
-                return seleucids;
+                var seleucidsResult = JsonSerializer.Deserialize<SeleucidsResult>(contentString);
+                return seleucidsResult.Seleucids;
             }
         }
     }

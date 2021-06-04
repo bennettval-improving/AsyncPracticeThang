@@ -10,6 +10,6 @@ namespace AsyncPracticeThang.ViewModels.Home
     {
         public int RandomNumber { get; set; }
         public string ChuckNorrisFact { get; set; }
-        public SeleucidsResult Seleucids { get; set; }
+        public List<Seleucid> Seleucids { get; set; }
     }
 }
