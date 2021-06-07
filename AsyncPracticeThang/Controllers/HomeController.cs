@@ -24,14 +24,16 @@ namespace AsyncPracticeThang.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var randomNumber = await _homeData.GetRandomNumber();
-            var chuckNorrisFact = await _homeData.GetChuckNorrisFact();
-            var seleucids = await _homeData.GetSeleucids();
+            var randomNumberTask = _homeData.GetRandomNumber();
+            var chuckNorrisFactTask = _homeData.GetChuckNorrisFact();
+            var seleucidsTask = _homeData.GetSeleucids();
+
+            Task.WaitAll(randomNumberTask, chuckNorrisFactTask, seleucidsTask);
             var viewModel = new IndexViewModel 
             { 
-                RandomNumber = randomNumber,
-                ChuckNorrisFact = chuckNorrisFact,
-                Seleucids = seleucids
+                RandomNumber = randomNumberTask.Result,
+                ChuckNorrisFact = chuckNorrisFactTask.Result,
+                Seleucids = seleucidsTask.Result
             };
             return View(viewModel);
         }
