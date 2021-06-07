@@ -11,5 +11,7 @@ namespace AsyncPracticeThang.ViewModels.Home
         public int RandomNumber { get; set; }
         public string ChuckNorrisFact { get; set; }
         public List<Seleucid> Seleucids { get; set; }
+        public Teacher Teacher { get; set; }
+        public List<Teacher> YourTeachers { get; set; }
     }
 }

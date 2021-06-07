@@ -18,22 +18,43 @@
             </tr>
         </thead>
         <tbody>
-       @foreach (var seleucid in Model.Seleucids)
-        {
+            @foreach (var seleucid in Model.Seleucids)
+            {
+                <tr>
+                    <td>@seleucid.Name</td>
+                    <td>@seleucid.StartReign</td>
+                    <td>@seleucid.EndReign</td>
+                    @if (seleucid.Consorts.Count > 1)
+                    {
+                        <td>@seleucid.Consorts.Aggregate((i, j) => i + ", " + j)</td>
+                    }
+                    else
+                    {
+                        <td>@seleucid.Consorts.FirstOrDefault()</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h4>Teacher</h4>
+    <p><b>Name:</b> @Model.Teacher.Name</p>
+    <p><b>State:</b> @Model.Teacher.HomeState</p>
+    <h4>Your Teachers</h4>
+    <table class="table table-hover">
+        <thead class="thead-dark">
             <tr>
-                <td>@seleucid.Name</td>
-                <td>@seleucid.StartReign</td>
-                <td>@seleucid.EndReign</td>
-                @if (seleucid.Consorts.Count > 1)
-                {
-                    <td>@seleucid.Consorts.Aggregate((i, j) => i + ", " + j)</td>
-                }
-                else
-                {
-                    <td>@seleucid.Consorts.FirstOrDefault()</td>
-                }
+                <th>Teacher Name</th>
+                <th>State</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var teacher in Model.YourTeachers)
+            {
+                <tr>
+                    <td>@teacher.Name</td>
+                    <td>@teacher.HomeState</td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

@@ -27,13 +27,17 @@ namespace AsyncPracticeThang.Controllers
             var randomNumberTask = _homeData.GetRandomNumber();
             var chuckNorrisFactTask = _homeData.GetChuckNorrisFact();
             var seleucidsTask = _homeData.GetSeleucids();
+            var teacherDataTask = _homeData.GetTeacherData();
+            var yourTeachersDataTask = _homeData.GetYourTeachersData();
 
-            Task.WaitAll(randomNumberTask, chuckNorrisFactTask, seleucidsTask);
+            Task.WaitAll(randomNumberTask, chuckNorrisFactTask, seleucidsTask, teacherDataTask, yourTeachersDataTask);
             var viewModel = new IndexViewModel 
             { 
                 RandomNumber = randomNumberTask.Result,
                 ChuckNorrisFact = chuckNorrisFactTask.Result,
-                Seleucids = seleucidsTask.Result
+                Seleucids = seleucidsTask.Result,
+                Teacher = teacherDataTask.Result,
+                YourTeachers = yourTeachersDataTask.Result
             };
             return View(viewModel);
         }
